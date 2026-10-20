@@ -15,7 +15,7 @@ def get_spark(app_name: str = "off-pipeline", master: str = "local[*]") -> Spark
     """
     # Python workers must run the same interpreter as the driver (the venv), not the
     # system ``python3``, otherwise PySpark fails with PYTHON_VERSION_MISMATCH.
-    os.environ.setdefault("PYSPARK_PYTHON", sys.executable)
+    os.environ["PYSPARK_PYTHON"] = sys.executable
     builder = (
         SparkSession.builder.appName(app_name)
         .master(master)
